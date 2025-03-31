@@ -21,9 +21,15 @@ class AuthController extends Controller
     }
     // direct dashboad
     public function dashboard(){
-        if(Auth::user()->role=='admin'){
-            return redirect()-> route('category#list');
+        if (!Auth::check()) {
+            return redirect()->route('auth#loginPage'); // Redirect guests to login
         }
-        return redirect()-> route('user#home');
+    
+        if(Auth::user()->role == 'admin'){
+            return redirect()->route('category#list');
+        }
+    
+        return redirect()->route('user#home');
     }
+    
 }

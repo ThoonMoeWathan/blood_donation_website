@@ -22,6 +22,8 @@ Route::get('registerPage',[AuthController::class,'registerPage'])->name('auth#re
 Route::middleware(['auth'])->group(function () {
     //dashboard
     Route::get('dashboard',[AuthController::class,'dashboard'])->name('dashboard');
+
+
     Route::middleware(['admin_auth'])->group(function () {
     //category
     Route::prefix('category')->group(function (){
@@ -81,6 +83,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('delete/{id}',[ContactController::class,'contactDelete'])->name('admin#contactDelete');
     });
 });
+
+
     Route::group(['prefix'=>'user','middleware'=>'user_auth'],function(){
         Route::get('/homePage',[BloodDonorController::class,'home'])->name('user#home');
         Route::get('/contactPage',[ContactController::class,'contactPage'])->name('user#contactPage');

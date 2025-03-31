@@ -47,15 +47,15 @@ class AppointmentController extends Controller
     private function requestAppointmentInfo($request){
         return[
             'bank_id' => $request->bloodBank,
-            'user_id'=>$request->userId,
-            'phone' => $request->phone
+            'user_id'=>$request->userId
+            // 'phone' => $request->phone
         ];
     }
     // donor validation check
     private function appointmentValidationCheck($request,$action){
         $validationRules=[
             'bloodBank' => 'required',
-            'phone' => 'required|min:11',
+            // 'phone' => 'required|min:11',
         ];
         Validator::make($request->all(),$validationRules)->validate();
     }
