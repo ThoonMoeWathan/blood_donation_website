@@ -3,12 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserListController;
 use App\Http\Controllers\BloodBankController;
 use App\Http\Controllers\BloodDonorController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\FundDonationController;
 use App\Http\Controllers\RequestBloodController;
 
 // Login, Register (before login)
@@ -34,7 +36,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('edit/{id}',[CategoryController::class,'edit'])->name('category#edit');
     Route::post('update',[CategoryController::class,'update'])->name('category#update');
     });
-    //category
+    //blood bank
     Route::prefix('bloodBank')->group(function (){
     Route::get('list',[BloodBankController::class,'list'])->name('bloodBank#list');
     Route::get('create/Page',[BloodBankController::class,'createPage'])->name('bloodBank#createPage');
@@ -64,23 +66,36 @@ Route::middleware(['auth'])->group(function () {
         Route::get('change/role',[UserListController::class,'userChangeRole'])->name('admin#userChangeRole');
         Route::get('delete/{id}',[UserListController::class,'deleteUser'])->name('admin#deleteUser');
     });
+    // donor lists
     Route::prefix('donor')->group(function () {
         Route::get('list',[UserListController::class,'donorList'])->name('donor#list');
         Route::get('delete/{id}',[UserListController::class,'deleteDonor'])->name('donor#delete');
     });
+    // blood requests
     Route::prefix('requestBlood')->group(function () {
         Route::get('list',[RequestBloodController::class,'list'])->name('requestBlood#list');
         Route::get('delete/{id}',[RequestBloodController::class,'delete'])->name('requestBlood#delete');
+        Route::post('change/status', [RequestBloodController::class, 'changeStatus'])->name('requestBlood#changeStatus');
+        Route::post('ajax/change/status', [RequestBloodController::class, 'ajaxChangeStatus'])->name('requestBlood#change');
     });
     Route::prefix('appointment')->group(function () {
-        //appointment list
+    // appointment list
         Route::get('list',[AppointmentController::class,'appointmentList'])->name('admin#appointmentList');
         Route::get('delete/{id}',[AppointmentController::class,'appointmentDelete'])->name('admin#appointmentDelete');
     });
     Route::prefix('contact')->group(function () {
-        //contact list
+    // contact list
         Route::get('list',[ContactController::class,'contactList'])->name('admin#contactList');
         Route::get('delete/{id}',[ContactController::class,'contactDelete'])->name('admin#contactDelete');
+    });
+    // company lists
+    Route::prefix('company')->group(function(){
+        Route::get('list',[CompanyController::class,'list'])->name('admin#companyList');
+        Route::get('delete/{id}',[CompanyController::class,'delete'])->name('admin#companyDelete');
+    });
+    // fund donation list
+    Route::prefix('fund')->group(function(){
+        Route::get('list',[FundDonationController::class,'list'])->name('admin#fundList');
     });
 });
 
@@ -93,15 +108,20 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('donor')->group(function () {
         Route::get('createPage',[BloodDonorController::class,'createPage'])->name('donor#createPage');
         Route::post('create',[BloodDonorController::class,'create'])->name('donor#create');
-        //password
+        // create company account
+        Route::prefix('company')->group(function () {
+        Route::get('createPage',[CompanyController::class,'createPage'])->name('company#createPage');
+        Route::post('create',[CompanyController::class,'create'])->name('company#create');
+        });
+        // password
         Route::get('password/changePage', [BloodDonorController::class,'changePasswordPage'])->name('user#changePasswordPage');
         Route::post('change/password',[BloodDonorController::class,'changePassword'])->name('user#changePassword');
-        //account
+        // account
         Route::get('details',[BloodDonorController::class,'details'])->name('user#details');
         Route::get('edit',[BloodDonorController::class,'edit'])->name('user#edit');
         Route::post('update/{id}',[BloodDonorController::class,'update'])->name('user#update');
         });
-        //book appointment
+        // book appointment
         Route::prefix('appointment')->group(function () {
         Route::get('createPage',[AppointmentController::class,'createPage'])->name('appointment#createPage');
         Route::post('create',[AppointmentController::class,'create'])->name('appointment#create');
@@ -110,6 +130,12 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('request/blood')->group(function () {
         Route::get('createPage',[RequestBloodController::class,'createPage'])->name('request#createPage');
         Route::post('create',[RequestBloodController::class,'create'])->name('request#create');
+        Route::get('status', [RequestBloodController::class, 'userStatusPage'])->name('user#status');
+        });
+        // payment
+        Route::prefix('payment')->group(function(){
+        Route::get('page',[FundDonationController::class,'directPage'])->name('user#directPayment');
+        Route::post('create',[FundDonationController::class,'create'])->name('payment#create');
         });
 
     });

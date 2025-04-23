@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('weight');
             $table->string('allergy')->nullable();
             $table->string('disease')->nullable();
-            $table->string('last_donated_date');
+            $table->string('last_donated_date')->nullable();
             $table->timestamps();
         });
     }

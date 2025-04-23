@@ -89,13 +89,19 @@
                                                     <h5 class="name">
                                                         <a href="#">{{Auth::user()->name}}</a>
                                                     </h5>
-                                                    <span class="email">{{Auth::user()->email}}</span>
+                                                    <span class="email m-0">{{Auth::user()->email}}</span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
                                                     <a href="{{ route('user#details') }}" class="text-decoration-none">
                                                         <i class="fa-solid fa-user me-3"></i>Account</a>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__body">
+                                                <div class="account-dropdown__item">
+                                                    <a href="{{ route('user#status') }}" class="text-decoration-none">
+                                                        <i class="fa-solid fa-eye me-3"></i>Check Status</a>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
@@ -152,7 +158,13 @@
                                             <a class="nav-link" href="#contact">Contact</a>
                                         </li>
                                         <li class="nav-item">
+                                            <a class="nav-link" href="{{route('user#directPayment')}}">Donate Us</a>
+                                        </li>
+                                        <li class="nav-item">
                                             <a class="nav-link" href="{{route('request#createPage')}}">Request Blood</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{route('company#createPage')}}">Join with Company</a>
                                         </li>
                                     </ul>
                                 </div>

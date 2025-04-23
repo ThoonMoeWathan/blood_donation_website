@@ -59,8 +59,7 @@ class BloodDonorController extends Controller
             'dob' => 'required',
             'firstName' => 'required',
             'lastName' => 'required',
-            'weight' => 'required',
-            'lastDonatedBlood' => 'required'
+            'weight' => 'required'
         ];
         Validator::make($request->all(),$validationRules)->validate();
     }

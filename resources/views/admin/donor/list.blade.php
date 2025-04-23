@@ -71,9 +71,9 @@
                                             <td> {{$d->dob}} </td>
                                             <td> {{$d->blood_type}} </td>
                                             <td> {{$d->weight}} </td>
-                                            <td> {{$d->allergy}} </td>
-                                            <td> {{$d->disease}} </td>
-                                            <td> {{$d->last_donated_date}} </td>
+                                            <td> {{$d->allergy ?: 'No Allergy'}} </td>
+                                            <td> {{$d->disease ?: 'No Disease'}} </td>
+                                            <td> {{$d->last_donated_date ?: 'Not Donated Before'}} </td>
                                             <td>
                                                 <div class="table-data-feature">
                                                     <a href="{{ route('donor#delete',$d->id) }}">

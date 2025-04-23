@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blood_Group;
 use Illuminate\Http\Request;
 use App\Models\Request_Blood;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class RequestBloodController extends Controller
@@ -22,11 +23,56 @@ class RequestBloodController extends Controller
         $bloodRequests->appends(request()->all());
         return view('admin.requestBlood.list',compact('bloodRequests'));
     }
+
+    public function changeStatus(Request $request)
+    {
+        $request->validate([
+            'requestBloodId' => 'required|integer',
+            'status' => 'required|in:0,1,2',
+        ]);
+
+        $bloodRequest = Request_Blood::find($request->requestBloodId);
+
+        if ($bloodRequest) {
+            $bloodRequest->status = $request->status;
+            $bloodRequest->save();
+
+            return response()->json(['message' => 'Status updated successfully.']);
+        } else {
+            return response()->json(['message' => 'Request not found.'], 404);
+        }
+    }
+
+    // ajax change status
+    public function ajaxChangeStatus(Request $request){
+        Request_Blood::where('id',$request->requestBloodId)->update([
+            'status'=>$request->status
+        ]);
+
+        $requestBloods = Request_Blood::select('request__bloods.*', 'users.name as user_name')
+            ->leftJoin('users', 'users.id', 'request__bloods.user_id')
+            ->orderBy('request__bloods.created_at', 'desc')
+            ->get();
+
+        return response()->json($requestBloods, 200);
+    }
+
     // delete request
     public function delete($id){
         Request_Blood::where('id',$id)->delete();
         return redirect()->route('requestBlood#list')->with(['deleteSuccess'=>'The selected request has been successfully Deleted']);
     }
+
+    // show request status
+    public function userStatusPage()
+{
+    $bloodRequests = Request_Blood::where('user_id', Auth::id())
+        ->select('request__bloods.*', 'blood__groups.blood_type as blood_type')
+        ->leftJoin('blood__groups','request__bloods.blood_id','blood__groups.id')
+        ->orderBy('request__bloods.created_at', 'desc')
+        ->paginate(10);
+    return view('user.account.statusCheck', compact('bloodRequests'));
+}
     // donor register
     public function createPage(){
         $bloodgp= Blood_Group::select('id','blood_type')->get();

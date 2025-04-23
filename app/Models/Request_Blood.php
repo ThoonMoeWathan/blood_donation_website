@@ -14,6 +14,7 @@ class Request_Blood extends Model
         'require_for',
         'blood_id',
         'relation',
-        'message'
+        'message',
+        'status'
     ];
 }

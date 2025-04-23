@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Category List')
+@section('title','Admin Dashboard')
 
 @section('content')
     <!-- MAIN CONTENT-->
@@ -12,7 +12,7 @@
                     <div class="table-data__tool">
                         <div class="table-data__tool-left">
                             <div class="overview-wrap">
-                                <h2 class="title-1">Blood Requests</h2>
+                                <h2 class="title-1">Collabrated Companies</h2>
 
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                             <h4 class="text-secondary">Search key : <span class="text-success">{{request('key')}}</span> </h4>
                         </div>
                     <div class="col-3 offset-9">
-                        <form action="{{route('requestBlood#list')}}" method="get">
+                        <form action="{{route('admin#companyList')}}" method="get">
                             @csrf
                             <div class="d-flex">
                                 <input type="text" name="key" id="" class="form-control" placeholder="Search..." value="{{ request('key') }}">
@@ -43,48 +43,39 @@
                     </div>
 
                     <div class="row mt-2">
-                        <div class="col-2 offset-10 text-primary p-2 text-right text-danger">
-                            <h4> <i class="fa-solid fa-bell mr-2"></i>( {{$bloodRequests->total()}} )</h4>
+                        <div class="col-2 offset-10 text-danger p-2 text-right">
+                            <h4> <i class="fa-solid fa-building"></i> ( {{ $companies->total() }} ) </h4>
                         </div>
                     </div>
-
-                        @if (count($bloodRequests)!=0)
-                            <div class="table-responsive table-responsive-data2">
+                    @if (count($companies) != 0)
+                        <div class="table-responsive table-responsive-data2">
                             <table class="table table-data2 text-center">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>User Name</th>
-                                        <th>Require For</th>
-                                        <th>Blood Type</th>
-                                        <th>Relation</th>
-                                        <th>Message</th>
-                                        <th>Status</th>
+                                        <th>Registered By</th>
+                                        <th>Registered Companies</th>
+                                        <th>Company Email</th>
+                                        <th>Created At</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($bloodRequests as $p)
+                                    @foreach ($companies as $company)
                                         <tr class="tr-shadow">
-                                            <td class="col-1" id="requestBloodId"> {{$p->id}} </td>
-                                            <td class="col-1"> {{$p->user_name}} </td>
-                                            <td class="col-2"> {{$p->require_for}} </td>
-                                            <td class="col-1"> {{$p->blood_type}} </td>
-                                            <td class="col-2"> {{$p->relation}} </td>
-                                            <td class="col-2"> {{$p->message}} </td>
+                                            <td> {{ $company->id }} </td>
+                                            <td> {{ $company->user_name }} </td>
+                                            <td> {{ $company->company_name }} </td>
+                                            <td> {{ $company->company_email }} </td>
+                                            <td> {{ $company->created_at->format('j-F-Y') }} </td>
                                             <td>
-                                            <select name="status" class="form-control statusChange">
-                                                <option value="0" @if ($p->status == 0) selected @endif>
-                                                    Pending</option>
-                                                <option value="1" @if ($p->status == 1) selected @endif>
-                                                    Accept</option>
-                                                <option value="2" @if ($p->status == 2) selected @endif>
-                                                    Reject</option>
-                                            </select>
-                                            </td>
-                                            <td class="col-1">
                                                 <div class="table-data-feature">
-                                                    <a href="{{ route('requestBlood#delete',$p->id) }}">
+                                                    {{-- <button class="item" data-toggle="tooltip" data-placement="top"
+                                                        title="View">
+                                                        <i class="zmdi zmdi-eye"></i>
+                                                    </button> --}}
+                                                    
+                                                    <a href="{{ route('admin#companyDelete', $company->id) }}">
                                                         <button class="item me-1" data-toggle="tooltip" data-placement="top"
                                                             title="Delete">
                                                             <i class="zmdi zmdi-delete"></i>
@@ -97,19 +88,17 @@
                                 </tbody>
                             </table>
                             <div class="mt-3">
-                                {{ $bloodRequests->links() }}
+                                {{-- {{ $companies->link() }} --}}
+                                {{ $companies->appends(request()->query())->links() }}
                             </div>
                         </div>
-                        @else
-                            <h3 class="text-secondary text-center mt-5">There is no Blood Request here.</h3>
-                        @endif
+                    @else
+                        <h3 class="text-secondary text-center mt-5">There is no Company Registered yet.</h3>
+                    @endif
                     <!-- END DATA TABLE -->
                 </div>
             </div>
         </div>
     </div>
     <!-- END MAIN CONTENT-->
-
-
 @endsection
-

@@ -11,7 +11,6 @@ class Fund_Donation extends Model
 
     protected $fillable=[
         'user_id',
-        'payment_type',
         'amount'
     ];
 }

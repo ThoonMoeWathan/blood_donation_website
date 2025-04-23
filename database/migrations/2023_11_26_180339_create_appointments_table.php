@@ -19,8 +19,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('date');
             $table->string('time');
-            $table->string('charge');
-            $table->string('code');
+            $table->string('status');
             $table->timestamps();
         });
     }

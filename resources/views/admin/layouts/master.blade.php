@@ -5,10 +5,12 @@
     <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
     <meta name="description" content="au theme template">
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
+
 
     <!-- Title Page-->
     <title>Dashboard</title>
@@ -71,7 +73,11 @@
                         </li>
                         <li>
                             <a href="{{ route('donor#list') }}" class="text-decoration-none">
-                                <i class="fa-solid fa-users"></i>Donor Lists</a>
+                            <i class="fa-solid fa-notes-medical"></i>User's Health Condition</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin#companyList') }}" class="text-decoration-none">
+                            <i class="fa-solid fa-building"></i>Company Lists</a>
                         </li>
                         <li>
                             <a href="{{ route('requestBlood#list') }}" class="text-decoration-none">
@@ -80,6 +86,10 @@
                         <li>
                             <a href="{{ route('admin#appointmentList') }}" class="text-decoration-none">
                                 <i class="fa-solid fa-calendar-check"></i> Appointment Lists</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin#fundList') }}" class="text-decoration-none">
+                            <i class="fa-solid fa-coins"></i> Fund Donation History</a>
                         </li>
                         <li>
                             <a href="{{ route('admin#contactList') }}" class="text-decoration-none">
@@ -250,7 +260,39 @@
     <!-- Main JS-->
     <script src="{{asset('admin/js/main.js')}}"></script>
 
+    <script>
+    $(document).ready(function () {
+        $('.statusChange').change(function () {
+            let currentStatus = $(this).val();
+            let parentNode = $(this).closest('tr');
+            let requestBloodId = parentNode.find('#requestBloodId').text().trim();
 
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("requestBlood#change") }}',
+                data: {
+                    requestBloodId: requestBloodId,
+                    status: currentStatus
+                },
+                success: function (response) {
+                    // Optional: show a success message or update UI
+                    // alert('Status updated successfully!');
+                    location.reload(); // Reload after success
+                },
+                error: function (xhr) {
+                    alert('Failed to update status');
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
 
 </body>
 

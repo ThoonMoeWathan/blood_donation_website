@@ -13,8 +13,14 @@ return new class extends Migration
     {
         Schema::create('blood__inventories', function (Blueprint $table) {
             $table->id();
-            $table->integer('bankId');
-            $table->integer('bloodGroupId');
+            $table->integer('bank_id');
+            $table->integer('blood_group_id');
+            $table->string('collection_date');
+            $table->string('expiry_date');
+            $table->string('temperature');
+            $table->integer('quantity');
+            $table->string('status');
+            $table->string('test_result');
             $table->timestamps();
         });
     }

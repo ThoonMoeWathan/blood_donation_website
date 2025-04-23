@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('require_for');
             $table->integer('blood_id');
             $table->string('relation');
+            $table->integer('status')->default(0); // 0 -> pending / 1 -> success / 2 -> rejected
             $table->string('message')->nullable();
             $table->timestamps();
         });
