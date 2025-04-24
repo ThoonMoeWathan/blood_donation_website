@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
@@ -27,7 +28,7 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::middleware(['admin_auth'])->group(function () {
-    //category
+    //blood group
     Route::prefix('category')->group(function (){
     Route::get('list',[CategoryController::class,'list'])->name('category#list');
     Route::get('create/Page',[CategoryController::class,'createPage'])->name('category#createPage');
@@ -44,6 +45,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('delete/{id}',[BloodBankController::class,'delete'])->name('bloodBank#delete');
     Route::get('edit/{id}',[BloodBankController::class,'edit'])->name('bloodBank#edit');
     Route::post('update',[BloodBankController::class,'update'])->name('bloodBank#update');
+    });
+    //doctor
+    Route::prefix('doctor')->group(function (){
+        Route::get('list',[DoctorController::class,'list'])->name('doctor#list');
+        Route::get('create/Page',[DoctorController::class,'createPage'])->name('doctor#createPage');
+        Route::post('create',[DoctorController::class,'create'])->name('doctor#create');
+        Route::get('delete/{id}',[DoctorController::class,'delete'])->name('doctor#delete');
+        Route::get('edit/{id}',[DoctorController::class,'edit'])->name('doctor#edit');
+        Route::post('update',[DoctorController::class,'update'])->name('doctor#update');
     });
     //admin account
     Route::prefix('admin')->group(function () {
@@ -82,6 +92,8 @@ Route::middleware(['auth'])->group(function () {
     // appointment list
         Route::get('list',[AppointmentController::class,'appointmentList'])->name('admin#appointmentList');
         Route::get('delete/{id}',[AppointmentController::class,'appointmentDelete'])->name('admin#appointmentDelete');
+        Route::post('change/status', [AppointmentController::class, 'changeStatus'])->name('appointment#changeStatus');
+        Route::post('ajax/change/status', [AppointmentController::class, 'ajaxChangeStatus'])->name('appointment#change');
     });
     Route::prefix('contact')->group(function () {
     // contact list

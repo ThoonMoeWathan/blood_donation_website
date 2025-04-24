@@ -72,6 +72,10 @@
                                 <i class="fa-solid fa-users"></i>User Lists</a>
                         </li>
                         <li>
+                            <a href="{{ route('doctor#list') }}" class="text-decoration-none">
+                            <i class="fa-solid fa-user-doctor"></i>Doctor Lists</a>
+                        </li>
+                        <li>
                             <a href="{{ route('donor#list') }}" class="text-decoration-none">
                             <i class="fa-solid fa-notes-medical"></i>User's Health Condition</a>
                         </li>
@@ -260,6 +264,7 @@
     <!-- Main JS-->
     <script src="{{asset('admin/js/main.js')}}"></script>
 
+    {{-- request blood --}}
     <script>
     $(document).ready(function () {
         $('.statusChange').change(function () {
@@ -292,7 +297,40 @@
             });
         });
     });
+
+    $(document).ready(function () {
+        $('.appointmentStatusChange').change(function () {
+            let currentStatus = $(this).val();
+            let parentNode = $(this).closest('tr');
+            let appointmentId = parentNode.find('#appointmentId').text().trim();
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("appointment#change") }}',
+                data: {
+                    appointmentId: appointmentId,
+                    status: currentStatus
+                },
+                success: function (response) {
+                    // Optional: show a success message or update UI
+                    // alert('Status updated successfully!');
+                    location.reload(); // Reload after success
+                },
+                error: function (xhr) {
+                    alert('Failed to update status');
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+    });
 </script>
+
 
 </body>
 

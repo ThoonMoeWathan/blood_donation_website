@@ -9,10 +9,10 @@ use Carbon\Carbon;
 
 class FundDonationController extends Controller
 {
-    // diret list page
+    // direct list page
     public function list(){
         $funds = Fund_Donation::when(request('key'),function($query){
-            $query->where('user_name','like','%'. request('key') .'%');
+            $query->where('users.name','like','%'. request('key') .'%');
         })
         ->leftJoin('users','users.id','fund__donations.user_id')
         ->select('fund__donations.*', 'users.name as user_name')

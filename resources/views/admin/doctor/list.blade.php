@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Category List')
+@section('title','Admin Dashboard')
 
 @section('content')
     <!-- MAIN CONTENT-->
@@ -12,9 +12,16 @@
                     <div class="table-data__tool">
                         <div class="table-data__tool-left">
                             <div class="overview-wrap">
-                                <h2 class="title-1">Appointment Lists</h2>
+                                <h2 class="title-1">Doctor List</h2>
 
                             </div>
+                        </div>
+                        <div class="table-data__tool-right">
+                            <a href="{{ route('doctor#createPage') }}">
+                                <button class="btn btn-sm btn-danger btn-block">
+                                    <i class="zmdi zmdi-plus"></i> Add New Doctor
+                                </button>
+                            </a>
                         </div>
                     </div>
                     @if (session('deleteSuccess'))
@@ -30,7 +37,7 @@
                             <h4 class="text-secondary">Search key : <span class="text-success">{{request('key')}}</span> </h4>
                         </div>
                     <div class="col-3 offset-9">
-                        <form action="{{route('admin#appointmentList')}}" method="get">
+                        <form action="{{route('doctor#list')}}" method="get">
                             @csrf
                             <div class="d-flex">
                                 <input type="text" name="key" id="" class="form-control" placeholder="Search..." value="{{ request('key') }}">
@@ -43,51 +50,43 @@
                     </div>
 
                     <div class="row mt-2">
-                        <div class="col-2 offset-10 text-primary p-2 text-right text-danger">
-                            <h4> <i class="fa-solid fa-calendar-check mr-2"></i>( {{$appointments->total()}} )</h4>
+                        <div class="col-2 offset-10 text-danger p-2 text-right">
+                            <h4> <i class="fa-solid fa-droplet"></i> ( {{ $doctors->total() }} ) </h4>
                         </div>
                     </div>
-                        @if (count($appointments)!=0)
-                            <div class="table-responsive table-responsive-data2">
+                    @if (count($doctors) != 0)
+                        <div class="table-responsive table-responsive-data2">
                             <table class="table table-data2 text-center">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>User Name</th>
-                                        <th>Blood Bank</th>
-                                        <th>Doctor</th>
+                                        <th>Doctor Name</th>
+                                        <th>Degree</th>
+                                        <th>Email</th>
                                         <th>Phone</th>
-                                        <th>Date</th>
-                                        <th>Time</th>
-                                        <th>Created At</th>
-                                        <th></th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($appointments as $p)
+                                    @foreach ($doctors as $doctor)
                                         <tr class="tr-shadow">
-                                            <td class="" id="appointmentId"> {{$p->id}} </td>
-                                            <td class="col-1"> {{$p->user_name}} </td>
-                                            <td class="col-1"> {{$p->bank_name}} </td>
-                                            <td class="col-1"> {{$p->doctor_name}} </td>
-                                            <td class="col-1"> {{$p->phone}} </td>
-                                            <td class="col-1"> {{$p->date}} </td>
-                                            <td class="col-1"> {{$p->time}} </td>
-                                            <td class="col-2"> {{$p->created_at}} </td>
-                                            <td class="col-3">
-                                                <select name="status" class="form-control appointmentStatusChange">
-                                                    <option value="0" @if ($p->status == 0) selected @endif>
-                                                        Pending</option>
-                                                    <option value="1" @if ($p->status == 1) selected @endif>
-                                                        Accept</option>
-                                                    <option value="2" @if ($p->status == 2) selected @endif>
-                                                        Reject</option>
-                                                </select>
-                                                </td>
-                                            <td class="col-1">
+                                            <td> {{ $doctor->id }} </td>
+                                            <td class="col-6"> {{ $doctor->doctor_name }} </td>
+                                            <td class="col-6"> {{ $doctor->degree }} </td>
+                                            <td class="col-6"> {{ $doctor->email }} </td>
+                                            <td class="col-6"> {{ $doctor->phone }} </td>
+                                            <td>
                                                 <div class="table-data-feature">
-                                                    <a href="{{ route('admin#appointmentDelete',$p->id) }}">
+                                                    {{-- <button class="item" data-toggle="tooltip" data-placement="top"
+                                                        title="View">
+                                                        <i class="zmdi zmdi-eye"></i>
+                                                    </button> --}}
+                                                    <a href="{{ route('doctor#edit',$doctor->id) }}">
+                                                    <button class="item me-1" data-toggle="tooltip" data-placement="top"
+                                                        title="Edit">
+                                                        <i class="zmdi zmdi-edit"></i>
+                                                    </button></a>
+                                                    <a href="{{ route('doctor#delete', $doctor->id) }}">
                                                         <button class="item me-1" data-toggle="tooltip" data-placement="top"
                                                             title="Delete">
                                                             <i class="zmdi zmdi-delete"></i>
@@ -100,12 +99,13 @@
                                 </tbody>
                             </table>
                             <div class="mt-3">
-                                {{ $appointments->links() }}
+                                {{-- {{ $doctors->link() }} --}}
+                                {{ $doctors->appends(request()->query())->links() }}
                             </div>
                         </div>
-                        @else
-                            <h3 class="text-secondary text-center mt-5">There is no Appointment here.</h3>
-                        @endif
+                    @else
+                        <h3 class="text-secondary text-center mt-5">There is no Doctor Registered yet.</h3>
+                    @endif
                     <!-- END DATA TABLE -->
                 </div>
             </div>

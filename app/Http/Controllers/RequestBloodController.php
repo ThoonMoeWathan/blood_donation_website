@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use App\Models\Blood_Group;
 use Illuminate\Http\Request;
 use App\Models\Request_Blood;
@@ -71,7 +72,14 @@ class RequestBloodController extends Controller
         ->leftJoin('blood__groups','request__bloods.blood_id','blood__groups.id')
         ->orderBy('request__bloods.created_at', 'desc')
         ->paginate(10);
-    return view('user.account.statusCheck', compact('bloodRequests'));
+    $appointments = Appointment::where('user_id', Auth::id())
+        ->select('appointments.*', 'users.name as user_name','doctors.doctor_name as doctor_name','blood__banks.bank_name as bank_name')
+        ->leftJoin('users','users.id','appointments.user_id')
+        ->leftJoin('blood__banks','appointments.bank_id','blood__banks.id')
+        ->leftJoin('doctors','appointments.doctor_id','doctors.id')
+        ->orderBy('appointments.created_at', 'desc')
+        ->paginate(10);
+    return view('user.account.statusCheck', compact('bloodRequests','appointments'));
 }
     // donor register
     public function createPage(){
