@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class DoctorController extends Controller
 {
-    // diret list page
+    // direct list page
     public function list(){
         $doctors = Doctor::when(request('key'),function($query){
             $query->where('doctor_name','like','%'. request('key') .'%');
@@ -52,7 +52,7 @@ class DoctorController extends Controller
         Doctor::where('id',$request->doctorId)->update($data);
         return redirect()->route('doctor#list');
     }
-    // validation for creation of blood types
+    // validation for creation of doctor
     private function doctorValidationCheck($request){
         Validator::make($request->all(),[
             'doctorName' => 'required|unique:doctors,doctor_name,'.$request->doctorId,
@@ -61,7 +61,7 @@ class DoctorController extends Controller
             'phone'=>'required|min:11'
         ])->validate();
     }
-    // request blood group data
+    // request doctor data
     private function requestDoctorData($request){
         return [
             'doctor_name' => $request->doctorName,

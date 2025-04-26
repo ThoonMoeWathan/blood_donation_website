@@ -13,6 +13,7 @@ use App\Http\Controllers\BloodDonorController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\FundDonationController;
 use App\Http\Controllers\RequestBloodController;
+use App\Http\Controllers\BloodInventoryController;
 
 // Login, Register (before login)
 Route::redirect('/', 'homePage');
@@ -26,7 +27,6 @@ Route::middleware(['auth'])->group(function () {
     //dashboard
     Route::get('dashboard',[AuthController::class,'dashboard'])->name('dashboard');
 
-
     Route::middleware(['admin_auth'])->group(function () {
     //blood group
     Route::prefix('category')->group(function (){
@@ -36,6 +36,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('delete/{id}',[CategoryController::class,'delete'])->name('category#delete');
     Route::get('edit/{id}',[CategoryController::class,'edit'])->name('category#edit');
     Route::post('update',[CategoryController::class,'update'])->name('category#update');
+    });
+    //blood inventory
+    Route::prefix('blood/inventory')->group(function (){
+        Route::get('list',[BloodInventoryController::class,'list'])->name('bloodInventory#list');
+        Route::get('create/Page',[BloodInventoryController::class,'createPage'])->name('bloodInventory#createPage');
+        Route::post('create',[BloodInventoryController::class,'create'])->name('bloodInventory#create');
+        Route::get('delete/{id}',[BloodInventoryController::class,'delete'])->name('bloodInventory#delete');
+        Route::get('edit/{id}',[BloodInventoryController::class,'edit'])->name('bloodInventory#edit');
+        Route::post('update/{id}',[BloodInventoryController::class,'update'])->name('bloodInventory#update');
     });
     //blood bank
     Route::prefix('bloodBank')->group(function (){

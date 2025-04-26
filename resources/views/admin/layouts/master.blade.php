@@ -64,7 +64,12 @@
                         </li>
                         <li>
                             <a href="{{route('bloodBank#list')}}" class="text-decoration-none">
-                                <i class="fa-solid fa-building"></i>Blood Banks
+                                <i class="fa-solid fa-hospital"></i>Blood Banks
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('bloodInventory#list')}}" class="text-decoration-none">
+                                <i class="fa-solid fa-box"></i>Blood Inventories
                             </a>
                         </li>
                         <li>
