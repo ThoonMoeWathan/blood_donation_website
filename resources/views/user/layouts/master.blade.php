@@ -52,7 +52,7 @@
                             <ul class="ulleft">
                                 <li>
                                     <i class="far fa-envelope"></i>
-                                    user@smarteyeapps.com
+                                    lifeElixir@charity.com
                                     <span>|</span></li>
                                 <li>
                                     <i class="far fa-clock"></i>
@@ -180,7 +180,7 @@
 
 
       <!--*************** Footer  Starts Here *************** -->
-    <footer id="contact" class="container-fluid">
+      <footer id="contact" class="container-fluid">
         <div class="container">
 
             <div class="row content-ro">
@@ -191,7 +191,7 @@
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="detail">
-                            <p>46-29 Indra Street, Southernbank, Tigaione, Toranto, 3006 Canada</p>
+                            <p>46-29 Eaindra Street, Southernbank, Sule Square, Myanmar</p>
                         </div>
                     </div>
                     <div class="address-row">
@@ -199,7 +199,7 @@
                             <i class="far fa-envelope"></i>
                         </div>
                         <div class="detail">
-                            <p>sales@smarteyeapps.com <br> support@smarteyeapps.com</p>
+                            <p>lifeElixir@charity.com <br> support@lifeElixir.com</p>
                         </div>
                     </div>
                     <div class="address-row">
@@ -218,17 +218,17 @@
                         <li>Home</li>
                         <li>About Us</li>
                         <li>Contacts</li>
-                        <li>Pricing</li>
+                        <li>Donations</li>
                         <li>Gallery</li>
-                        <li>eatures</li>
+                        <li>Features</li>
 
                     </ul>
                     </div>
                    <div class="row no-margin mt-1">
-                       <h2 class="m-t-2">More Products</h2>
+                       <h2 class="m-t-2">More Volunteering</h2>
                      <ul>
-                        <li>Forum PHP Script</li>
-                        <li>Edu Smart</li>
+                        <li>Forum Blood Script</li>
+                        <li>Edu Charity</li>
                         <li>Smart Event</li>
                         <li>Smart School</li>
 
@@ -243,45 +243,22 @@
                             <h4>Quick Message</h4>
                         </div>
                         <div class="form-body">
-                            @if (session('contactSuccess'))
-                                <div class="col-12">
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <i class="fa-solid fa-check me-2"></i> {{ session('contactSuccess') }}
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
-                                    </div>
-                                </div>
-                            @endif
-                            <form action="{{ route('user#contact') }}" method="post" novalidate="novalidate">
-                                @csrf
                                 <div class="form-group">
-                                    <input type="hidden" name="userId" value="{{ Auth::user()->id }}">
-                                    <input id="cc-pament" name="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror"
-                                        aria-required="true" aria-invalid="false" placeholder="Enter Email" value="{{old('email')}}">
-                                    @error('email')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
+                                    <input id="cc-pament" name="" type="email"
+                                        class="form-control"
+                                        aria-required="true" aria-invalid="false" placeholder="Enter Email">
                                 </div>
                                 <div class="form-group mb-5">
-                                    <input id="cc-pament" name="message" type="text"
-                                        class="form-control @error('message') is-invalid @enderror"
-                                        aria-required="true" aria-invalid="false" placeholder="Enter Message" value="{{old('message')}}">
-                                    @error('message')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
+                                    <input id="cc-pament" name="" type="text"
+                                        class="form-control"
+                                        aria-required="true" aria-invalid="false" placeholder="Enter Message">
                                 </div>
                                 <div>
-                                    <button type="submit" class="btn btn-lg bg-danger text-white btn-block">
+                                    <button type="submit" class="btn btn-lg bg-danger text-white btn-block" data-toggle="modal" data-target="#loginFirstModal">
                                         <span>Send</span>
                                         <i class="fa-solid fa-circle-right"></i>
                                     </button>
                                 </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -289,7 +266,7 @@
             <div class="footer-copy">
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
-                        <p>Copyright © <a href="https://www.smarteyeapps.com">Smarteyeapps.com</a> | All right reserved.</p>
+                        <p>Copyright © <a href="#">lifeElixir@charity.com</a> | All right reserved.</p>
                     </div>
                     <div class="col-lg-4 col-md-6 socila-link">
                         <ul>

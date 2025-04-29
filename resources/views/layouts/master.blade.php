@@ -50,7 +50,7 @@
                             <ul class="ulleft">
                                 <li>
                                     <i class="far fa-envelope"></i>
-                                    sales@smarteyeapps.com
+                                    lifeElixir@charity.com
                                     <span>|</span></li>
                                 <li>
                                     <i class="far fa-clock"></i>
@@ -105,11 +105,11 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="#gallery">Gallery</a>
                                         </li>
-                                         <li class="nav-item">
-                                            <a class="nav-link" href="#process">Process</a>
-                                        </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="#blog">Blog</a>
+                                        </li>
+                                         <li class="nav-item">
+                                            <a class="nav-link" href="#process">Process</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="#contact">Contact US</a>
@@ -138,7 +138,7 @@
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="detail">
-                            <p>46-29 Indra Street, Southernbank, Tigaione, Toranto, 3006 Canada</p>
+                            <p>46-29 Eaindra Street, Southernbank, Sule Square, Myanmar</p>
                         </div>
                     </div>
                     <div class="address-row">
@@ -146,7 +146,7 @@
                             <i class="far fa-envelope"></i>
                         </div>
                         <div class="detail">
-                            <p>sales@smarteyeapps.com <br> support@smarteyeapps.com</p>
+                            <p>lifeElixir@charity.com <br> support@lifeElixir.com</p>
                         </div>
                     </div>
                     <div class="address-row">
@@ -165,17 +165,17 @@
                         <li>Home</li>
                         <li>About Us</li>
                         <li>Contacts</li>
-                        <li>Pricing</li>
+                        <li>Donations</li>
                         <li>Gallery</li>
-                        <li>eatures</li>
+                        <li>Features</li>
 
                     </ul>
                     </div>
                    <div class="row no-margin mt-1">
-                       <h2 class="m-t-2">More Products</h2>
+                       <h2 class="m-t-2">More Volunteering</h2>
                      <ul>
-                        <li>Forum PHP Script</li>
-                        <li>Edu Smart</li>
+                        <li>Forum Blood Script</li>
+                        <li>Edu Charity</li>
                         <li>Smart Event</li>
                         <li>Smart School</li>
 
@@ -213,7 +213,7 @@
             <div class="footer-copy">
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
-                        <p>Copyright © <a href="https://www.smarteyeapps.com">Smarteyeapps.com</a> | All right reserved.</p>
+                        <p>Copyright © <a href="#">lifeElixir@charity.com</a> | All right reserved.</p>
                     </div>
                     <div class="col-lg-4 col-md-6 socila-link">
                         <ul>
