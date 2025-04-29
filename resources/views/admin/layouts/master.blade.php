@@ -15,6 +15,8 @@
     <!-- Title Page-->
     <title>Dashboard</title>
 
+    <link rel="icon" type="image/png" href="{{ asset('storage/my_logo.jpg') }}">
+
     <!-- Fontfaces CSS-->
     <link href="{{asset('admin/css/font-face.css')}}" rel="stylesheet" media="all">
     <link href="{{asset('admin/vendor/font-awesome-4.7/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
@@ -51,7 +53,7 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="{{asset('user/images/logo.jpg')}}" alt="">
+                    <h1 class="text-dark">Life <b class="text-danger">Elixir</b></h1>
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -90,15 +92,19 @@
                         </li>
                         <li>
                             <a href="{{ route('requestBlood#list') }}" class="text-decoration-none">
-                                <i class="fa-solid fa-bell"></i> Blood Requests</a>
+                                <i class="fa-solid fa-bell"></i>Blood Requests</a>
                         </li>
                         <li>
                             <a href="{{ route('admin#appointmentList') }}" class="text-decoration-none">
-                                <i class="fa-solid fa-calendar-check"></i> Appointment Lists</a>
+                                <i class="fa-solid fa-calendar-check"></i>Appointment Lists</a>
                         </li>
                         <li>
                             <a href="{{ route('admin#fundList') }}" class="text-decoration-none">
-                            <i class="fa-solid fa-coins"></i> Fund Donation History</a>
+                            <i class="fa-solid fa-coins"></i>Fund Donation History</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('events#list') }}" class="text-decoration-none">
+                                <i class="fa-solid fa-hashtag"></i>Event Post</a>
                         </li>
                         <li>
                             <a href="{{ route('admin#contactList') }}" class="text-decoration-none">
@@ -174,7 +180,7 @@
                                             @if (Auth::user()->image == null)
                                                 <img src="{{ asset('image/default_user.png') }}" class="img-thumbnail">
                                             @else
-                                                <img src="{{ asset('storage/'.Auth::user()->image) }}" />
+                                                <img src="{{ asset('storage/'.Auth::user()->image) }}" class="profile-image"/>
                                             @endif
                                         </div>
                                         <div class="content">
@@ -188,7 +194,7 @@
                                                             <img src="{{ asset('image/default_user.png') }}"
                                                                 class="img-thumbnail">
                                                         @else
-                                                            <img src="{{ asset('storage/'.Auth::user()->image) }}" />
+                                                            <img src="{{ asset('storage/'.Auth::user()->image) }}" class="profile-image" />
                                                         @endif
                                                     </a>
                                                 </div>

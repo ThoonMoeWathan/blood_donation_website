@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield('title')</title>
+    <link rel="icon" type="image/png" href="{{ asset('storage/my_logo.jpg') }}">
     <link rel="shortcut icon" href="{{ asset('user/images/fav.png') }}" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="{{asset('user/images/fav.jpg')}}">
@@ -67,7 +68,7 @@
                                             @if (Auth::user()->image == null)
                                                 <img src="{{ asset('image/default_user.png') }}" class="img-thumbnail">
                                             @else
-                                                <img src="{{ asset('storage/'.Auth::user()->image) }}" />
+                                                <img src="{{ asset('storage/'.Auth::user()->image) }}" class="profile-image"/>
                                             @endif
                                         </div>
                                         <div class="content">
@@ -81,7 +82,7 @@
                                                             <img src="{{ asset('image/default_user.png') }}"
                                                                 class="img-thumbnail">
                                                         @else
-                                                            <img src="{{ asset('storage/'.Auth::user()->image) }}" />
+                                                            <img src="{{ asset('storage/'.Auth::user()->image) }}" class="profile-image" />
                                                         @endif
                                                     </a>
                                                 </div>
@@ -130,9 +131,9 @@
             <div id="menu-jk" class="header-bottom">
                 <div class="container">
                     <div class="row nav-row">
-                        <div class="col-md-3 logo">
+                        <div class="col-md-3 logo align-self-center">
                             <a href="{{route('user#home')}}">
-                                <img src="{{asset('user/images/logo.jpg')}}" alt="">
+                                <h1>Life <b class="text-danger">Elixir</b></h1>
                             </a>
                         </div>
                         <div class="col-md-9 nav-col">

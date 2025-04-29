@@ -16,16 +16,16 @@
                 <div class="carousel-item active">
                     <img class="d-block w-100" src="{{asset('user/images/slider/slide-02.jpg')}}" alt="First slide">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5 class=" bounceInDown">Donate Blood & Save a Life</h5>
+                        <h5 class="text-white bounceInDown">Donate Blood & Save a Life</h5>
                         <p class=" bounceInLeft">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam justo neque, <br>
                             aliquet sit amet elementum vel, vehicula eget eros. Vivamus arcu metus, mattis <br>
                             sed sagittis at, sagittis quis neque. Praesent.</p>
 
                         <div class=" vbh">
 
-                            <div class="btn btn-success  bounceInUp" data-toggle="modal" data-target="#loginFirstModal"> Become a volunteer </div>
+                            <div class="btn btn-danger  bounceInUp" data-toggle="modal" data-target="#loginFirstModal"> Become a volunteer </div>
 
-                            <div class="btn btn-success  bounceInUp">
+                            <div class="btn btn-danger  bounceInUp">
                                 <a class="text-white" href="#contact">Contact US</a>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                 <div class="carousel-item">
                     <img class="d-block w-100" src="{{asset('user/images/slider/slide-03.jpg')}}" alt="Third slide">
                     <div class="carousel-caption vdg-cur d-none d-md-block">
-                        <h5 class=" bounceInDown">Donate Blood & Save a Life</h5>
+                        <h5 class="text-white bounceInDown">Donate Blood & Save a Life</h5>
                         <p class=" bounceInLeft">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam justo neque, <br>
                             aliquet sit amet elementum vel, vehicula eget eros. Vivamus arcu metus, mattis <br>
                             sed sagittis at, sagittis quis neque. Praesent.</p>
@@ -141,43 +141,24 @@
 
      <section id="process" class="donation-care">
          <div class="container">
-           <div class="row session-title">
-               <h2>Donation Process</h2>
-               <p>The donation process from the time you arrive center until the time you leave</p>
+           <div class="row session-title text-center">
+            <h2>Latest Blog</h2>
            </div>
-            <div class="row">
-                 <div class="col-md-3 col-sm-6 vd">
+            <div class="row d-flex align-items-center">
+                @foreach ($events as $event)
+                <div class="col-md-3 col-sm-6 vd">
                     <div class="bkjiu">
-                     <img src="user/images/gallery/g1.jpg" alt="">
-                     <h4><b>1 - </b>Registration</h4>
-                     <p>Ut wisi enim ad minim veniam, quis laore nostrud exerci tation ulm hedi corper turet suscipit lobortis</p>
-                     <button class="btn btn-sm btn-danger">Readmore <i class="fas fa-arrow-right"></i></button>
+                     <img src="{{asset('storage/'.$event->image)}}" alt="">
+                     <h4><b>{{$event->event_name}}</b></h4>
+                     <p>{{Str::limit($event->description, 110, '...')}}</p>
+                     <a href="{{route('auth#eventPage', ['id' => $event->id])}}" class="btn btn-sm btn-danger">
+                        Readmore <i class="fas fa-arrow-right"></i>
+                     </a>
                      </div>
                  </div>
-                 <div class="col-md-3 col-sm-6 vd">
-                    <div class="bkjiu">
-                     <img src="user/images/gallery/g2.jpg" alt="">
-                        <h4><b>2 - </b>Seeing</h4>
-                     <p>Ut wisi enim ad minim veniam, quis laore nostrud exerci tation ulm hedi corper turet suscipit lobortis</p>
-                     <button class="btn btn-sm btn-danger">Readmore <i class="fas fa-arrow-right"></i></button>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-sm-6 vd">
-                    <div class="bkjiu">
-                     <img src="user/images/gallery/g3.jpg" alt="">
-                        <h4><b>3 - </b>Donation</h4>
-                     <p>Ut wisi enim ad minim veniam, quis laore nostrud exerci tation ulm hedi corper turet suscipit lobortis</p>
-                     <button class="btn btn-sm btn-danger">Readmore <i class="fas fa-arrow-right"></i></button>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-sm-6 vd">
-                    <div class="bkjiu">
-                        <img src="user/images/gallery/g4.jpg" alt="">
-                        <h4><b>4 - </b>Save Life</h4>
-                         <p>Ut wisi enim ad minim veniam, quis laore nostrud exerci tation ulm hedi corper turet suscipit lobortis</p>
-                         <button class="btn btn-sm btn-danger">Readmore <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                 </div>
+                @endforeach
+
+
             </div>
 
 
@@ -191,7 +172,9 @@
         <div id="blog" class="blog-container contaienr-fluid">
             <div class="container">
                 <div class="session-title row">
-                  <h2>Latest Blog</h2>
+                    <h2>Donation Process</h2>
+               <p class="text-center">The donation process from the time you arrive center until the time you leave</p>
+
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla vel nisl a dictum. Donec ut est arcu. Donec hendrerit velit consectetur adipiscing elit.</p>
                 </div>
                 <div class="row news-row">

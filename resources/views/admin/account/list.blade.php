@@ -57,7 +57,7 @@
                             <tbody>
                                 @foreach ($admin as $a)
                                     <tr class="tr-shadow">
-                                        <td class="col-2">
+                                        <td class="col-3">
                                             @if ($a->image == null)
                                                 <img src="{{ asset('image/default_user.png') }}" class="img-thumbnil shadow-sm">
                                                 {{-- @if ($a->gender == 'male')
@@ -66,7 +66,7 @@
                                                     <img src="{{ asset('image/default_user.png') }}" class="img-thumbnil shadow-sm">
                                                 @endif --}}
                                             @else
-                                                <img src="{{ asset('storage/'.$a->image) }}" class="img-thumbnil shadow-sm">
+                                                <img src="{{ asset('storage/'.$a->image) }}" class="shadow-sm profile-image">
                                             @endif
                                         </td>
                                         <input type="hidden" id="adminId" value="{{ $a->id }}">

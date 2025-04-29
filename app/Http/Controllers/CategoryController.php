@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
-    // diret list page
+    // direct list page
     public function list(){
         $categories = Blood_Group::when(request('key'),function($query){
             $query->where('blood_type','like','%'. request('key') .'%');

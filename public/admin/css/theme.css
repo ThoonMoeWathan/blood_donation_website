@@ -14660,4 +14660,20 @@ section {
     padding-left: 30px;
 }
 
+.scrollable {
+    max-height: 60px;
+    overflow: auto;
+    white-space: normal;
+    word-wrap: break-word;
+    padding: 5px;
+}
+
+.profile-image {
+    width: 200px; /* Set width */
+    height: 200px; /* Set height */
+    object-fit: cover; /* Crop nicely without stretching */
+    border-radius: 10px; /* Optional: make it slightly rounded */
+}
+
+
 

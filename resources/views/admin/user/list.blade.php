@@ -35,13 +35,13 @@
                                 <tbody id="dataList">
                                     @foreach ($users as $user)
                                         <tr>
-                                            <td class="col-2">
+                                            <td class="col-3">
                                                 @if ($user->image == null)
                                                     <img src="{{ asset('image/default_user.png') }}"
                                                         class="img-thumbnail shadow-sm">
                                                 @else
                                                     <img src="{{ asset('storage/' . $user->image) }}"
-                                                        class="img-thumbnail shadow-sm" />
+                                                        class="shadow-sm profile-image" />
                                                 @endif
                                             </td>
                                             <input type="hidden" id="userId" value="{{ $user->id }}">

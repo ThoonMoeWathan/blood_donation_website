@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\EventsController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\BloodInventoryController;
 // Login, Register (before login)
 Route::redirect('/', 'homePage');
 Route::get('homePage',[AuthController::class,'homePage'])->name('auth#homePage');
+Route::get('eventPage/{id}',[AuthController::class,'eventPage'])->name('auth#eventPage');
 Route::get('loginPage',[AuthController::class,'loginPage'])->name('auth#loginPage');
 Route::get('registerPage',[AuthController::class,'registerPage'])->name('auth#registerPage');
 
@@ -63,6 +65,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('delete/{id}',[DoctorController::class,'delete'])->name('doctor#delete');
         Route::get('edit/{id}',[DoctorController::class,'edit'])->name('doctor#edit');
         Route::post('update',[DoctorController::class,'update'])->name('doctor#update');
+    });
+    //event post
+    Route::prefix('event/post')->group(function () {
+        Route::get('list',[EventsController::class,'list'])->name('events#list');
+        Route::get('create/Page',[EventsController::class,'createPage'])->name('events#createPage');
+        Route::post('create',[EventsController::class,'create'])->name('events#create');
+        Route::get('delete/{id}',[EventsController::class,'delete'])->name('events#delete');
+        Route::get('edit/{id}',[EventsController::class,'edit'])->name('events#edit');
+        Route::post('update/{id}',[EventsController::class,'update'])->name('events#update');
     });
     //admin account
     Route::prefix('admin')->group(function () {
@@ -129,6 +140,8 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('donor')->group(function () {
         Route::get('createPage',[BloodDonorController::class,'createPage'])->name('donor#createPage');
         Route::post('create',[BloodDonorController::class,'create'])->name('donor#create');
+        Route::get('edit/{id}',[BloodDonorController::class,'editDonor'])->name('donor#edit');
+        Route::post('donor/update/{id}', [BloodDonorController::class, 'updateDonor'])->name('donor#update');
         // create company account
         Route::prefix('company')->group(function () {
         Route::get('createPage',[CompanyController::class,'createPage'])->name('company#createPage');
@@ -158,6 +171,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('page',[FundDonationController::class,'directPage'])->name('user#directPayment');
         Route::post('create',[FundDonationController::class,'create'])->name('payment#create');
         });
+        // event
+        Route::get('eventPage/{id}',[BloodDonorController::class,'eventPage'])->name('user#eventPage');
 
     });
 });

@@ -41,7 +41,7 @@ class FundDonationController extends Controller
     {
         Validator::make($request->all(), [
             'cardNumber' => 'required|digits_between:15,19|numeric',
-            'expiryDate' => ['required', 'regex:/^(0[1-9]|1[0-2])\/\d{4}$/'],
+            'expiryDate' => ['required', 'regex:/^\d{4}-(0[1-9]|1[0-2])$/'],
             'securityNumber' => 'required|digits_between:3,4|numeric',
             'amount' => 'required|numeric',
         ])->validate();

@@ -7,10 +7,11 @@ use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Events;
 use App\Models\Contact;
 use App\Models\Category;
-use App\Models\Blood_Group;
 use App\Models\Blood_Donor;
+use App\Models\Blood_Group;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,14 @@ class BloodDonorController extends Controller
 {
     // user home page
     public function home(){
-        return view('user.home');
+        $events=Events::all();
+        return view('user.home',compact('events'));
+    }
+
+    // direct event page
+    public function eventPage($id){
+        $eventDetail=Events::where('id',$id)->first();
+        return view('user.eventDetail',compact('eventDetail'));
     }
 
     // donor register
@@ -37,6 +45,30 @@ class BloodDonorController extends Controller
         Blood_Donor::create($data);
         return back()-> with(['registerSuccess'=>'Thank you for joining our charity']);
     }
+
+    // direct donor edit
+    public function editDonor($id)
+    {
+        $donor = Blood_Donor::leftJoin('blood__groups', 'blood__groups.id', 'blood__donors.blood_id')
+        ->select(
+            'blood__donors.*',
+            'blood__groups.blood_type as blood_type'
+        )
+        ->where('blood__donors.id', $id)
+        ->first();
+
+        $bloodGroups = Blood_Group::select('id', 'blood_type')->get();
+        return view('user.account.editDonor', compact('donor', 'bloodGroups'));
+    }
+
+    // donor account update
+    public function updateDonor(Request $request, $id) {
+        $this->donorValidationCheck($request,'update');
+        $data = $this->requestDonorInfo($request);
+        Blood_Donor::where('id', $id)->update($data);
+        return redirect()->back()->with('updateSuccess', 'Donor info updated successfully!');
+    }
+
 
     // request donor info
     private function requestDonorInfo($request){
@@ -55,6 +87,7 @@ class BloodDonorController extends Controller
     // donor validation check
     private function donorValidationCheck($request,$action){
         $validationRules=[
+            // 'userId' => 'bail|unique:blood__donors,user_id',
             'bloodGroup' => 'required',
             'dob' => 'required',
             'firstName' => 'required',
@@ -64,11 +97,16 @@ class BloodDonorController extends Controller
         Validator::make($request->all(),$validationRules)->validate();
     }
     // ---------------
-    // direct admin details page
+    // direct user details page
     public function details(){
-        return view('user.account.details');
+        $donors = Blood_Donor::where('user_id',Auth::user()->id)
+        ->select('blood__donors.*','blood__groups.blood_type as blood_type')
+        ->leftJoin('blood__groups','blood__donors.blood_id','blood__groups.id')
+        ->orderBy('blood__donors.created_at','desc')
+        ->get();
+        return view('user.account.details',compact('donors'));
     }
-    // direct admin profile pic
+    // direct user profile pic
     public function edit(){
         return view('user.account.edit');
     }

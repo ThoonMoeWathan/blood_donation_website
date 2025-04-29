@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield('title')</title>
+    <link rel="icon" type="image/png" href="{{ asset('storage/my_logo.jpg') }}">
     <link rel="shortcut icon" href="{{ asset('user/images/fav.png') }}" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="{{asset('user/images/fav.jpg')}}">
@@ -13,6 +14,32 @@
     <link rel="stylesheet" href="{{asset('user/plugins/grid-gallery/css/grid-gallery.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('user/css/style.css')}}" />
     @yield('css-links')
+    {{-- from admin dashboard --}}
+    <!-- Fontfaces CSS-->
+    <link href="{{asset('admin/css/font-face.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('admin/vendor/font-awesome-4.7/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('admin/vendor/font-awesome-5/css/fontawesome-all.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('admin/vendor/mdi-font/css/material-design-iconic-font.min.css')}}" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="{{asset('admin/vendor/bootstrap-4.1/bootstrap.min.css')}}" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="{{asset('admin/vendor/animsition/animsition.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('admin/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('admin/vendor/wow/animate.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('admin/vendor/css-hamburgers/hamburgers.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('admin/vendor/slick/slick.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('admin/vendor/select2/select2.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('admin/vendor/perfect-scrollbar/perfect-scrollbar.css')}}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{{asset('admin/css/theme.css')}}" rel="stylesheet" media="all">
+
+    {{-- font awsome --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
         <header class="continer-fluid ">
@@ -46,9 +73,10 @@
             <div id="menu-jk" class="header-bottom">
                 <div class="container">
                     <div class="row nav-row">
-                        <div class="col-md-3 logo">
+                        <div class="col-md-3 logo align-self-center">
                             <a href="{{route('auth#homePage')}}">
-                                <img src="{{asset('user/images/logo.jpg')}}" alt="">
+                                <h1>Life <b class="text-danger">Elixir</b></h1>
+                                {{-- <img src="{{asset('user/images/logo.jpg')}}" alt=""> --}}
                             </a>
                         </div>
                         <div class="col-md-9 nav-col">

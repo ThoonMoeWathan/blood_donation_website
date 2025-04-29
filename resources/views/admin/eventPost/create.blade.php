@@ -9,7 +9,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-3 offset-8">
-                                <a href="{{route('category#list')}}"><button class="btn bg-dark text-white my-3">List</button></a>
+                                <a href="{{route('events#list')}}"><button class="btn bg-dark text-white my-3">List</button></a>
                             </div>
                         </div>
                         <div class="col-lg-6 offset-3">
@@ -19,48 +19,69 @@
                                         <h3 class="text-center title-2">Add New Event Blog</h3>
                                     </div>
                                     <hr>
-                                    <form action="{{route('category#create')}}" method="post" novalidate="novalidate">
+                                    <form action="{{ route('events#create') }}" method="POST" enctype="multipart/form-data">
+
                                         @csrf
                                         <div class="form-group">
-                                            <label for="bloodType" class="control-label mb-1">Title</label>
-                                            <input id="cc-pament" name="bloodType" type="text" value="{{old('bloodType')}}" class="form-control @error('bloodType') is-invalid @enderror" aria-required="true" aria-invalid="false" placeholder="AB...">
-                                            @error('bloodType')
+                                            <label for="eventName" class="control-label mb-1">Title</label>
+                                            <input id="cc-pament" name="eventName" type="text" value="{{old('eventName')}}" class="form-control @error('eventName') is-invalid @enderror" aria-required="true" aria-invalid="false" placeholder="Title of the event...">
+                                            @error('eventName')
                                                 <div class="invalid-feedback">
                                                     {{$message}}
                                                 </div>
                                             @enderror
                                         </div>
-                                        <div class="col-4 offset-1">
-                                            @if (Auth::user()->image == null)
-                                                <img src="{{ asset('image/default_user.png') }}"
-                                                    class="img-thumbnail shadow-sm">
-                                            @else
-                                                <img src="{{ asset('storage/'.Auth::user()->image) }}" class="img-thumbnail shadow-sm"/>
-                                            @endif
-                                            <div class="mt-3">
-                                                <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" >
-                                                @error('image')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
+                                        <div class="col-12 p-0 my-3">
+
+
+                                                <div class="mt-3">
+                                                    <input type="file"  style="width: 100%" class="form-control @error('image') is-invalid @enderror" name="image">
+                                                    @error('image')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
                                                 </div>
-                                                @enderror
-                                            </div>
-                                            <div class="mt-3">
-                                                <button class="btn bg-dark text-white col-12" type="submit">
-                                                    <i class="fa-solid fa-check me-1"></i> Save
-                                                </button>
-                                            </div>
+
                                         </div>
+
                                         <div class="form-group">
-                                            <label for="bloodType" class="control-label mb-1">Post</label>
-                                            <input id="cc-pament" name="bloodType" type="text" value="{{old('bloodType')}}" class="form-control @error('bloodType') is-invalid @enderror" aria-required="true" aria-invalid="false" placeholder="AB...">
-                                            @error('bloodType')
+                                            <label for="description" class="control-label mb-1">Post</label>
+                                            <textarea id="cc-pament" name="description"  value="{{old('description')}}" class="form-control @error('description') is-invalid @enderror" aria-required="true" aria-invalid="false" placeholder="Description..."></textarea>
+                                            @error('description')
                                                 <div class="invalid-feedback">
                                                     {{$message}}
                                                 </div>
                                             @enderror
                                         </div>
 
+                                        <div class="form-group">
+                                            <label for="place" class="control-label mb-1">Place</label>
+                                            <input id="cc-pament" name="place" type="text" value="{{old('place')}}" class="form-control @error('place') is-invalid @enderror" aria-required="true" aria-invalid="false" placeholder="AB...">
+                                            @error('place')
+                                                <div class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="date" class="control-label mb-1">Date</label>
+                                            <input id="cc-pament" name="date" type="date" value="{{old('date')}}" class="form-control @error('date') is-invalid @enderror" aria-required="true" aria-invalid="false" placeholder="Where it will take place...">
+                                            @error('date')
+                                                <div class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="time" class="control-label mb-1">Time</label>
+                                            <input id="cc-pament" name="time" type="time" value="{{old('time')}}" class="form-control @error('time') is-invalid @enderror" aria-required="true" aria-invalid="false" placeholder="Where it will take place...">
+                                            @error('time')
+                                                <div class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                            @enderror
+                                        </div>
                                         <div>
                                             <button id="payment-button" type="submit" class="btn btn-lg btn-danger btn-block">
                                                 <span id="payment-button-amount">Create</span>

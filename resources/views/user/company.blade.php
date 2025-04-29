@@ -33,7 +33,7 @@
                 <div class="login-wrap">
                     <div class="login-content">
                         <div class="login-logo">
-                            <h1 class="text-danger">Company Registeration</h1>
+                            <h1 class="text-danger">Company Registration</h1>
                         </div>
                         <div class="login-form">
                             <form action="{{ route('company#create') }}" method="post" novalidate="novalidate" enctype="multipart/form-data">

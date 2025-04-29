@@ -143,128 +143,111 @@
      <!-- ################# Donation Process Start Here #######################--->
 
      <section id="process" class="donation-care">
-         <div class="container">
-           <div class="row session-title">
-               <h2>Donation Process</h2>
-               <p>The donation process from the time you arrive center until the time you leave</p>
+        <div class="container">
+          <div class="row session-title text-center">
+           <h2>Latest Blog</h2>
+          </div>
+           <div class="row d-flex align-items-center">
+               @foreach ($events as $event)
+               <div class="col-md-3 col-sm-6 vd">
+                   <div class="bkjiu">
+                    <img src="{{asset('storage/'.$event->image)}}" alt="">
+                    <h4><b>{{$event->event_name}}</b></h4>
+                    <p>{{Str::limit($event->description, 110, '...')}}</p>
+                    <a href="{{route('user#eventPage', ['id' => $event->id])}}" class="btn btn-sm btn-danger">
+                       Readmore <i class="fas fa-arrow-right"></i>
+                    </a>
+                    </div>
+                </div>
+               @endforeach
+
+
            </div>
-            <div class="row">
-                 <div class="col-md-3 col-sm-6 vd">
-                    <div class="bkjiu">
-                     <img src="user/images/gallery/g1.jpg" alt="">
-                     <h4><b>1 - </b>Registration</h4>
-                     <p>Ut wisi enim ad minim veniam, quis laore nostrud exerci tation ulm hedi corper turet suscipit lobortis</p>
-                     <button class="btn btn-sm btn-danger">Readmore <i class="fas fa-arrow-right"></i></button>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-sm-6 vd">
-                    <div class="bkjiu">
-                     <img src="user/images/gallery/g2.jpg" alt="">
-                        <h4><b>2 - </b>Seeing</h4>
-                     <p>Ut wisi enim ad minim veniam, quis laore nostrud exerci tation ulm hedi corper turet suscipit lobortis</p>
-                     <button class="btn btn-sm btn-danger">Readmore <i class="fas fa-arrow-right"></i></button>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-sm-6 vd">
-                    <div class="bkjiu">
-                     <img src="user/images/gallery/g3.jpg" alt="">
-                        <h4><b>3 - </b>Donation</h4>
-                     <p>Ut wisi enim ad minim veniam, quis laore nostrud exerci tation ulm hedi corper turet suscipit lobortis</p>
-                     <button class="btn btn-sm btn-danger">Readmore <i class="fas fa-arrow-right"></i></button>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-sm-6 vd">
-                    <div class="bkjiu">
-                        <img src="user/images/gallery/g4.jpg" alt="">
-                        <h4><b>4 - </b>Save Life</h4>
-                         <p>Ut wisi enim ad minim veniam, quis laore nostrud exerci tation ulm hedi corper turet suscipit lobortis</p>
-                         <button class="btn btn-sm btn-danger">Readmore <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                 </div>
-            </div>
 
 
-         </div>
-     </section>
-
-
-
-
-         <!--################### Our Blog Starts Here #######################--->
-        <div id="blog" class="blog-container contaienr-fluid">
-            <div class="container">
-                <div class="session-title row">
-                  <h2>Latest Blog</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla vel nisl a dictum. Donec ut est arcu. Donec hendrerit velit consectetur adipiscing elit.</p>
-                </div>
-                <div class="row news-row">
-                    <div class="col-md-6">
-                        <div class="news-card">
-                            <div class="image">
-                                <img src="user/images/blog/blog_01.jpg" alt="">
-                            </div>
-                            <div class="detail">
-                                <h3>Latest News about Smarteye</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla vel nisl a dictum. Donec ut est arcu. Donec hendrerit consectetur adipiscing elit. </p>
-                                <p class="footp">
-                                    27 Comments <span>/</span>
-                                    Blog Design <span>/</span>
-                                    Read More
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="news-card">
-                            <div class="image">
-                                <img src="user/images/blog/blog_02.jpg" alt="">
-                            </div>
-                            <div class="detail">
-                                <h3>Apple Launch its New Phone</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla vel nisl a dictum. Donec ut est arcu. Donec hendrerit consectetur adipiscing elit. </p>
-                                <p class="footp">
-                                    27 Comments <span>/</span>
-                                    Blog Design <span>/</span>
-                                    Read More
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="news-card">
-                            <div class="image">
-                                <img src="user/images/blog/blog_03.jpg" alt="">
-                            </div>
-                            <div class="detail">
-                                <h3>About Windows 10 Update</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla vel nisl a dictum. Donec ut est arcu. Donec hendrerit consectetur adipiscing elit. </p>
-                                <p class="footp">
-                                    27 Comments <span>/</span>
-                                    Blog Design <span>/</span>
-                                    Read More
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="news-card">
-                            <div class="image">
-                                <img src="user/images/blog/blog_04.jpg" alt="">
-                            </div>
-                            <div class="detail">
-                                <h3>Latest News about Smarteye</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla vel nisl a dictum. Donec ut est arcu. Donec hendrerit consectetur adipiscing elit. </p>
-                                <p class="footp">
-                                    27 Comments <span>/</span>
-                                    Blog Design <span>/</span>
-                                    Read More
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
+    </section>
+
+
+
+
+        <!--################### Our Blog Starts Here #######################--->
+       <div id="blog" class="blog-container contaienr-fluid">
+           <div class="container">
+               <div class="session-title row">
+                   <h2>Donation Process</h2>
+              <p class="text-center">The donation process from the time you arrive center until the time you leave</p>
+
+                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla vel nisl a dictum. Donec ut est arcu. Donec hendrerit velit consectetur adipiscing elit.</p>
+               </div>
+               <div class="row news-row">
+                   <div class="col-md-6">
+                       <div class="news-card">
+                           <div class="image">
+                               <img src="user/images/blog/blog_01.jpg" alt="">
+                           </div>
+                           <div class="detail">
+                               <h3>Latest News about Smarteye</h3>
+                               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla vel nisl a dictum. Donec ut est arcu. Donec hendrerit consectetur adipiscing elit. </p>
+                               <p class="footp">
+                                   27 Comments <span>/</span>
+                                   Blog Design <span>/</span>
+                                   Read More
+                               </p>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-md-6">
+                       <div class="news-card">
+                           <div class="image">
+                               <img src="user/images/blog/blog_02.jpg" alt="">
+                           </div>
+                           <div class="detail">
+                               <h3>Apple Launch its New Phone</h3>
+                               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla vel nisl a dictum. Donec ut est arcu. Donec hendrerit consectetur adipiscing elit. </p>
+                               <p class="footp">
+                                   27 Comments <span>/</span>
+                                   Blog Design <span>/</span>
+                                   Read More
+                               </p>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-md-6">
+                       <div class="news-card">
+                           <div class="image">
+                               <img src="user/images/blog/blog_03.jpg" alt="">
+                           </div>
+                           <div class="detail">
+                               <h3>About Windows 10 Update</h3>
+                               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla vel nisl a dictum. Donec ut est arcu. Donec hendrerit consectetur adipiscing elit. </p>
+                               <p class="footp">
+                                   27 Comments <span>/</span>
+                                   Blog Design <span>/</span>
+                                   Read More
+                               </p>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-md-6">
+                       <div class="news-card">
+                           <div class="image">
+                               <img src="user/images/blog/blog_04.jpg" alt="">
+                           </div>
+                           <div class="detail">
+                               <h3>Latest News about Smarteye</h3>
+                               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla vel nisl a dictum. Donec ut est arcu. Donec hendrerit consectetur adipiscing elit. </p>
+                               <p class="footp">
+                                   27 Comments <span>/</span>
+                                   Blog Design <span>/</span>
+                                   Read More
+                               </p>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
 
 </body>
 
