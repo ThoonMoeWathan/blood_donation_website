@@ -64,6 +64,11 @@ class BloodInventoryController extends Controller
 
         return redirect()->route('bloodInventory#list');
     }
+    // delete blood inventory
+    public function delete($id){
+        Blood_Inventory::where('id', $id)->delete();
+        return redirect()->route('bloodInventory#list')->with(['deleteSuccess'=>'This inventory has been successfully Deleted']);
+    }
 
     // validation for creation of blood inventory
     private function bloodInventoryValidationCheck($request){

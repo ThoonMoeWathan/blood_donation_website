@@ -34,7 +34,7 @@ class ContactController extends Controller
         $this->contactValidationCheck($request);
         $data = $this->getContactData($request);
         Contact::create($data);
-        return back()-> with(['contactSuccess'=>'Thank you for contacing us. We will reply you with email after checking your message.']);
+        return back()-> with(['contactSuccess'=>'Thank you for contacting us. We will reply you with email after checking your message.']);
     }
 
     // contact validation check

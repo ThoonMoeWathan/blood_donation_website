@@ -37,7 +37,7 @@
                             <h4 class="text-secondary">Search key : <span class="text-success">{{request('key')}}</span> </h4>
                         </div>
                     <div class="col-3 offset-9">
-                        <form action="{{route('category#list')}}" method="get">
+                        <form action="{{route('bloodBank#list')}}" method="get">
                             @csrf
                             <div class="d-flex">
                                 <input type="text" name="key" id="" class="form-control" placeholder="Search..." value="{{ request('key') }}">

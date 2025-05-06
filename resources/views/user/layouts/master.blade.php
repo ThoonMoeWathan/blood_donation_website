@@ -242,16 +242,39 @@
                         <div class="form-title">
                             <h4>Quick Message</h4>
                         </div>
-                        <div class="form-body">
+                        <form action="{{route('user#contact')}}" method="post">
+                            @csrf
+                            @method('post')
+                            <div class="form-body">
+                                <input name="userId" type="hidden" value="{{ Auth::user()->id }}">
+                                        @if (session('contactSuccess'))
+                                            <div class="col-12">
+                                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                    <i class="fa-solid fa-check me-2"></i> {{ session('contactSuccess') }}
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                            </div>
+                                        @endif
                                 <div class="form-group">
-                                    <input id="cc-pament" name="" type="email"
-                                        class="form-control"
+                                    <input id="cc-pament" name="email" type="email"
+                                        class="form-control @error('email') is-invalid @enderror"
                                         aria-required="true" aria-invalid="false" placeholder="Enter Email">
+                                        @error('email')
+                                                <div class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                            @enderror
                                 </div>
                                 <div class="form-group mb-5">
-                                    <input id="cc-pament" name="" type="text"
-                                        class="form-control"
+                                    <input id="cc-pament" name="message" type="text"
+                                        class="form-control @error('message') is-invalid @enderror"
                                         aria-required="true" aria-invalid="false" placeholder="Enter Message">
+                                        @error('message')
+                                                <div class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                            @enderror
                                 </div>
                                 <div>
                                     <button type="submit" class="btn btn-lg bg-danger text-white btn-block" data-toggle="modal" data-target="#loginFirstModal">
@@ -260,6 +283,8 @@
                                     </button>
                                 </div>
                         </div>
+                        </form>
+
                     </div>
                 </div>
             </div>

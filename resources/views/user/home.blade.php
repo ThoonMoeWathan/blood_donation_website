@@ -25,8 +25,8 @@
 
                             <div class=" vbh">
 
-                                <div class="btn btn-danger  bounceInUp" data-toggle="modal" data-target="#loginFirstModal">
-                                    Become a volunteer </div>
+                                <div class="btn btn-danger bounceInUp" data-toggle="modal" data-target="#loginFirstModal">
+                                    <a class="text-white" href="{{route('donor#createPage')}}">Become a volunteer</a> </div>
 
                                 <div class="btn btn-danger  bounceInUp">
                                     <a class="text-white" href="#contact">Contact US</a>
@@ -47,7 +47,8 @@
                             <div class=" vbh">
 
                                 <div class="btn btn-danger  bounceInUp" data-toggle="modal" data-target="#loginFirstModal">
-                                    Book Appointment </div>
+                                    <a class="text-white" href="{{route('appointment#createPage')}}">Book Appointment</a>
+                                    </div>
                                 <div class="btn btn-danger  bounceInUp">
                                     <a class="text-white" href="#contact">Contact US</a>
                                 </div>
