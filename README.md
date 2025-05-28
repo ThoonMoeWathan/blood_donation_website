@@ -46,7 +46,7 @@ A Laravel-based web platform that facilitates blood donation activities by conne
 1. **Clone the repository**
 ```bash
 git clone https://github.com/ThoonMoeWathan/blood_donation_website
-cd blood-donation-app
+cd blood_donation_website
 ```
 
 2. **Install dependencies**
