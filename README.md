@@ -33,10 +33,10 @@ A Laravel-based web platform that facilitates blood donation activities by conne
 
 ## 🧰 Tech Stack
 
-- **Framework**: Laravel
+- **Backend**: Laravel
 - **Frontend**: Blade Templates, HTML, CSS, Bootstrap
 - **Database**: MySQL
-- **Authentication**: Laravel Breeze / Auth
+- **Authentication**: Auth
 - **Other Tools**: Laravel Jetstream, Composer, NPM, Laravel Artisan CLI
 
 ---
@@ -45,7 +45,7 @@ A Laravel-based web platform that facilitates blood donation activities by conne
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/blood-donation-app.git
+git clone https://github.com/ThoonMoeWathan/blood_donation_website
 cd blood-donation-app
 ```
 
